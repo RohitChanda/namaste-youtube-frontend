@@ -138,7 +138,7 @@ const Header = () => {
             🔍
           </button>
         </div>
-        {showSuggestion && (
+        {showSuggestion && (suggestions.length > 0) && (
           <div className=" fixed bg-white py-5 px-5 w-[29rem] shadow-lg rounded-lg border border-gray-100">
             <ul>
               {suggestions.map((item, index) => (

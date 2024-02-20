@@ -19,7 +19,7 @@ const ButtonList = () => {
     dispatch(fetchVideosByKeyWord(searchKey));
   }
   
-  const btnList = ['All', 'Bike', 'Music', 'JavaScript', 'Blues', 'Live Music','FIFA', 'Cricket', 'Guitar', 'Gym']
+  const btnList = ['All', 'Bike', 'Music', 'JavaScript', 'Blues', 'Football','FIFA', 'Cricket', 'Guitar', 'Gym']
   return (
     <div className='flex'>
       {btnList.map((name, index) => (

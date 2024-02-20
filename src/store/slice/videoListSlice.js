@@ -1,24 +1,21 @@
 import { createSlice, createAsyncThunk  } from "@reduxjs/toolkit";
 import { getSearchResults, getYoutubeVideosList } from "../../utils/youtubeApi";
 
-export const fetchVideos = createAsyncThunk('videosList/fetchVideos', async (pageToken = '') => {
+export const fetchVideos = createAsyncThunk('videosList/fetchVideos', async () => {
   const data = await getYoutubeVideosList();
-  console.log('response', data);
-  return data
+  return data;
 });
 
 export const fetchMoreVideos = createAsyncThunk('videosList/fetchMoreVideos', async ({pageToken}, {getState}) => {
-
   const state = getState();
   const searchKey = state.videosList.searchKey;
-  console.log('state----searchKey', searchKey);
   let data;
   if(searchKey !== '') {
     data = await getSearchResults(searchKey);
   } else {
     data = await getYoutubeVideosList(pageToken);
   }
-  console.log('response', data);
+
   return data
 });
 
@@ -50,7 +47,6 @@ const videoListSlice = createSlice({
       state.reloadTheHomePageCounter = state.reloadTheHomePageCounter <= 5 ? state.reloadTheHomePageCounter + 1 : 0
     },
     updateSearchKey: (state, action) => {
-      console.log('inside updateSearchKey');
       state.searchKey = action.payload.searchKey
     }
   },
@@ -63,7 +59,6 @@ const videoListSlice = createSlice({
     })
     builders.addCase( fetchVideos.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log('action.payload -->', action.payload);
       state.videos = [ ...action.payload.items ];
       state.nextPageToken = action.payload.nextPageToken;
       state.searchKey = '';
@@ -80,7 +75,6 @@ const videoListSlice = createSlice({
     })
     builders.addCase( fetchMoreVideos.fulfilled, (state, action) => {
       state.isLoading = false;
-      console.log('action.payload.nextPageToken', action.payload.nextPageToken);
       state.videos = [ ...state.videos,...action.payload.items ];
       state.nextPageToken = action.payload.nextPageToken;
     })
