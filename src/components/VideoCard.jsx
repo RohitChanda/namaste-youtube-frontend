@@ -16,7 +16,7 @@ const VideoCard = ({ info }) => {
       <div className="p-2 m-2 w-80 shadow-lg">
         <img
           alt="thumbnail"
-          className="rounded-lg"
+          className=" rounded-3xl hover:rounded-none"
           src={thumbnails.medium.url}
         />
         <ul>
