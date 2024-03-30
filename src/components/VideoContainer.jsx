@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import VideoCard from "./VideoCard";
-import { useSearchParams } from "react-router-dom";
+// import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchVideos,
@@ -9,7 +9,7 @@ import {
 import useDebounce from "../hooks/useDebounce";
 
 const VideoContainer = () => {
-  let [searchParams] = useSearchParams();
+  // let [searchParams] = useSearchParams();
   const videoListState =  useSelector((state) => state.videosList)
   const videos = useSelector((state) => state.videosList.videos);
   const dispatch = useDispatch();

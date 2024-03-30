@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { closeMenu, toggleMenu } from "../store/slice/appSlice";
+import { closeMenu } from "../store/slice/appSlice";
 import { useSearchParams } from "react-router-dom";
 import CommentsContainer from "./CommentsContainer";
 import LiveChats from "./LiveChats";

@@ -4,7 +4,7 @@ const HistoryIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-5 w-5 m-1 text-slate-500"
+      className="h-5 w-5 m-1 text-slate-500"
       width="24"
       height="24"
       viewBox="0 0 24 24"
