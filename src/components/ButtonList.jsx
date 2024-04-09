@@ -18,9 +18,14 @@ const ButtonList = () => {
     dispatch(fetchVideosByKeyWord(searchKey));
   }
   
-  const btnList = ['All', 'Bike', 'Music', 'JavaScript', 'Blues', 'Football','FIFA', 'Cricket', 'Guitar', 'Gym']
+  const btnList = ['All', 'Bike', 'Music', 'JavaScript', 'Blues', 'Football','FIFA', 'Cricket', 'Guitar',
+  //  'Gym', 'Drums', 'Barcelona', 'PUBG', 'Laptop', 'Messi', 'Barcelona', 'PUBG', 'Laptop', 'Messi'
+
+]
   return (
-    <div className='flex'>
+    <div
+     className='flex'
+     >
       {btnList.map((name, index) => (
         <Button
           key={index}
