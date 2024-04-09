@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../store/slice/appSlice";
 import {
   YOUTUBE_SEARCH_SUGGESTION_API,
-  getSearchResults,
 } from "../utils/youtubeApi";
 import { cacheSearchResult } from "../store/slice/searchSlice";
 import { Link, createSearchParams, useNavigate } from "react-router-dom";
@@ -12,6 +11,7 @@ import {
   reloadTheHomePageVideos,
   updateSearchKey,
 } from "../store/slice/videoListSlice";
+import axios from "axios";
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -32,13 +32,15 @@ const Header = () => {
         let values = searchState[searchQuery];
         setSuggestions(values);
       } else {
-        const data = await fetch(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
-        const response = await data.json();
-        setSuggestions(response[1]);
+        const data = await axios(YOUTUBE_SEARCH_SUGGESTION_API + searchQuery);
+        console.log('data', data.data);
+        const result = data.data;
+        // const response = await data.json();
+        setSuggestions(result[1]);
 
         dispatch(
           cacheSearchResult({
-            [searchQuery]: response[1],
+            [searchQuery]: result[1],
           })
         );
       }

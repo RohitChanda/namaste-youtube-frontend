@@ -8,7 +8,7 @@ const ProgressBar = () => {
   useEffect(()=> {
     let timer;
     clearTimeout(timer);
-    if(progress == 100 || !videoListState.isLoading) return;
+    if(progress === 100 || !videoListState.isLoading) return;
 
     timer = setTimeout(() => {
       setProgress((prev) => prev + 1)

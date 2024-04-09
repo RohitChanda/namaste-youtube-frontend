@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 const VideoCard = ({ info }) => {
   // console.log('info',info);
-  const { snippet, statistics, id } = info;
-  const { channelTitle, thumbnails, title, publishedAt } = snippet;
+  const { snippet, id } = info;
+  const { channelTitle, thumbnails, title } = snippet;
   let videoId = id?.videoId ? id.videoId : id;
 
   // const { viewCount } = statistics;
