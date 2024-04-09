@@ -17,6 +17,7 @@ const WatchPage = () => {
   const iFrameRef = useRef();
   const dispatch = useDispatch();
   const [videoDetails, setVideoDetails] = useState({});
+  const [showRelatedVideos, setShowRelatedVideos] = useState(false);
 
   const fetchVideoDetails = async () => {
     try {
@@ -45,11 +46,13 @@ const WatchPage = () => {
 
     iFrameRef.current.focus();
     window.scrollTo(0, 0);
+
+    setTimeout(() => {
+      setShowRelatedVideos(true);
+    }, 2000);
   }, []);
   return (
-    <div
-    //  className=" flex flex-row"
-    >
+    <div>
       <div className="px-10 flex w-full">
         <div className="left-part w-3/4" style={{
            marginLeft: '20px'
@@ -124,9 +127,13 @@ const WatchPage = () => {
         {/* <div className="w-full">
         </div> */}
         {/* <LiveChats /> */}
+
+        {
+          showRelatedVideos && 
         <div className="right-side w-1/4">
           <RelatedVideosList />
         </div>
+        }
       </div>
     </div>
   );
