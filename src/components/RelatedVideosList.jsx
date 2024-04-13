@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { fetchRelatedVideos } from '../utils/youtubeApi';
-import { useSearchParams } from 'react-router-dom';
-import ButtonList from './ButtonList';
+import React, { useEffect } from 'react';
 
 const RelatedVideosList = () => {
-    const [searchParams] = useSearchParams();
-    const getRelatedVideos = async () => {
-        const data = await fetchRelatedVideos(searchParams.get("v"));
-        console.log('data', data)
-    }
+    // const [searchParams] = useSearchParams();
+    // const getRelatedVideos = async () => {
+    //     const data = await fetchRelatedVideos(searchParams.get("v"));
+    //     console.log('data', data)
+    // }
     useEffect(() => {
         // getRelatedVideos();
 
