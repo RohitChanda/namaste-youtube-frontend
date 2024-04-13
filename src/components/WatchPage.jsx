@@ -11,6 +11,35 @@ import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { PiShareFatLight } from "react-icons/pi";
 import { GoDownload } from "react-icons/go";
 
+const VideoDescription = (props) => {
+  const { text, maxLength } = props;
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  console.log("text", text.length, maxLength);
+
+  return (
+    <>
+      {showFullDescription ? (
+        text
+      ) : (
+        <>
+          {text.substring(0, maxLength)}
+          <span
+          style={{
+            cursor:'pointer',
+            fontWeight: 'bold'
+          }}
+            onClick={() => {
+              setShowFullDescription((prev) => !prev);
+            }}
+          >
+            .....more
+          </span>
+        </>
+      )}
+    </>
+  );
+};
+
 const WatchPage = () => {
   const [searchParams] = useSearchParams();
   // console.log("video id", searchParams.get("v"));
@@ -18,6 +47,8 @@ const WatchPage = () => {
   const dispatch = useDispatch();
   const [videoDetails, setVideoDetails] = useState({});
   const [showRelatedVideos, setShowRelatedVideos] = useState(false);
+
+  const maxDescriptionLength = 200;
 
   const fetchVideoDetails = async () => {
     try {
@@ -54,9 +85,12 @@ const WatchPage = () => {
   return (
     <div>
       <div className="px-10 flex w-full">
-        <div className="left-part w-3/4" style={{
-           marginLeft: '20px'
-        }}>
+        <div
+          className="left-part w-3/4"
+          style={{
+            marginLeft: "20px",
+          }}
+        >
           <iframe
             ref={iFrameRef}
             style={{
@@ -78,7 +112,10 @@ const WatchPage = () => {
                 <div className="flex">
                   <Avatar
                     // src={videoDetails.authorProfileImageUrl}
-                    src={videoDetails?.authorProfileImageUrl || videoDetails.thumbnailUrl}
+                    src={
+                      videoDetails?.authorProfileImageUrl ||
+                      videoDetails.thumbnailUrl
+                    }
                     size={35}
                     round={true}
                   />
@@ -91,10 +128,10 @@ const WatchPage = () => {
                   </h1>
                 </div>
                 <button className=" bg-gray-300 font-medium mx-2 hover:bg-gray-400 text-white py-2 px-4 rounded-full">
-                Join
+                  Join
                 </button>
                 <button className="bg-black font-medium mx-2 hover:bg-gray-800 text-white py-2 px-4 rounded-full">
-                Subscribe
+                  Subscribe
                 </button>
                 {/* <button className="px-1 py-1 font-medium bg-black text-white rounded-full">
                   Subscribe
@@ -117,8 +154,13 @@ const WatchPage = () => {
             </div>
 
             <div>
-              <p className="mt-4 mb-4 px-5 py-8 bg-gray-200 rounded-2xl text-gray-700 text-base">
-                {videoDetails.description}
+              <p className="mt-4 mb-4 px-5 py-8 bg-gray-200 rounded-2xl text-gray-700 text-base font-normal">
+                {videoDetails?.description && (
+                  <VideoDescription
+                    text={videoDetails.description}
+                    maxLength={maxDescriptionLength}
+                  />
+                )}
               </p>
             </div>
             <CommentsContainer />
@@ -128,12 +170,11 @@ const WatchPage = () => {
         </div> */}
         {/* <LiveChats /> */}
 
-        {
-          showRelatedVideos && 
-        <div className="right-side w-1/4">
-          <RelatedVideosList />
-        </div>
-        }
+        {showRelatedVideos && (
+          <div className="right-side w-1/4">
+            <RelatedVideosList />
+          </div>
+        )}
       </div>
     </div>
   );
