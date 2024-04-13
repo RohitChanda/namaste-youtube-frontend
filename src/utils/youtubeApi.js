@@ -33,13 +33,13 @@ export const getCommentsList = async (videoId) => {
 export const fetchRelatedVideos = async (videoId) => {
     try {
 
+        let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${GOOGLE_API_KEY}&maxResults=10`
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
     } catch (e) {
-
+        console.log('error',e);
     }
-    let url = `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${GOOGLE_API_KEY}&maxResults=10`
-    const response = await fetch(url);
-    const data = await response.json();
-    return data;
 }
 
 export const getYoutubeVideoDetails = async(videoId) => {

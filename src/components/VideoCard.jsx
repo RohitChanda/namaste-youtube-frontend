@@ -6,9 +6,6 @@ const VideoCard = ({ info }) => {
   const { snippet, id } = info;
   const { channelTitle, thumbnails, title } = snippet;
   let videoId = id?.videoId ? id.videoId : id;
-
-  // const { viewCount } = statistics;
-  // console.log('video id', videoId, typeof videoId);
   if (!videoId) return <></>;
 
   return (

@@ -4,12 +4,14 @@ import VideoCard from "./VideoCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchVideos,
-  fetchMoreVideos
+  fetchMoreVideos,
+  fetchVideosByKeyWord
 } from "../store/slice/videoListSlice";
 import useDebounce from "../hooks/useDebounce";
+import { useSearchParams } from "react-router-dom";
 
 const VideoContainer = () => {
-  // let [searchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
   const videoListState =  useSelector((state) => state.videosList)
   const videos = useSelector((state) => state.videosList.videos);
   const dispatch = useDispatch();
@@ -18,7 +20,12 @@ const VideoContainer = () => {
 
   const getVideos = async () => {
     try {
-      dispatch(fetchVideos());
+      console.log('search', searchParams.get('search_query'));
+      if(searchParams.get('search_query')) {
+        dispatch(fetchVideosByKeyWord(searchParams.get('search_query')));
+      }else {
+        dispatch(fetchVideos());
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,14 +50,13 @@ const VideoContainer = () => {
   }, [videoListState.reloadTheHomePageCounter]);
 
   useEffect(()=> {
-    console.log(' videoListState.nextPageToken',  videoListState.nextPageToken);
     nextPageTokenRef.current = videoListState.nextPageToken;
   }, [videoListState.nextPageToken])
 
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (

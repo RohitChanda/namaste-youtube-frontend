@@ -15,8 +15,9 @@ const RelatedVideosList = () => {
     }, [])
     return (
         <>
-        <div className=' w-full h-[400px] ml-2 p-2 border border-black bg-slate-100 rounded-lg overflow-y-scroll flex flex-col-reverse'>
+        <div className=' w-full h-full ml-2 p-2 '>
         {/* <ButtonList /> */}
+        {/* <VideoContainer infinityScrolling={false} /> */}
         </div>
         {/* <div className=' w-full p-2 ml-2 border border-black'>
            
