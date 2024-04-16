@@ -46,7 +46,7 @@ const WatchPage = () => {
   const iFrameRef = useRef();
   const dispatch = useDispatch();
   const [videoDetails, setVideoDetails] = useState({});
-  const [showRelatedVideos, setShowRelatedVideos] = useState(false);
+  const [showLiveChat, setShowLiveChat] = useState(false);
   const isMenuOpen = useSelector((state) => state.app.isMenuOpen);
   const maxDescriptionLength = 200;
 
@@ -79,7 +79,7 @@ const WatchPage = () => {
     window.scrollTo(0, 0);
 
     setTimeout(() => {
-      setShowRelatedVideos(true);
+      setShowLiveChat(true);
     }, 2000);
   }, []);
   return (
@@ -173,8 +173,10 @@ const WatchPage = () => {
         </div>
       </div>
       <div className="right-side">
-          <LiveChats />
-        </div>
+          {
+            showLiveChat && <LiveChats />
+          }
+      </div>
       {/* {showRelatedVideos && (
         <div className="right-side w-1/4">
           <RelatedVideosList />
