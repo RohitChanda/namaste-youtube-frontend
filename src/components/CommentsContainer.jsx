@@ -221,15 +221,6 @@ const Comment = ({ data }) => {
     const sec = Math.floor(timeDiff / 1000);
     if (sec !== 0) return `${sec} sec ago`;
 
-    console.log("++++++start+++++");
-    console.log("sec", sec);
-    console.log("minutes", minutes);
-    console.log("hours", hours);
-    console.log("days", days);
-    console.log("months", months);
-    console.log("years", years);
-    console.log("++++++end +++++");
-
     return "";
   };
 
