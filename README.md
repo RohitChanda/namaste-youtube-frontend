@@ -70,10 +70,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-ss added.\
- ![image](https://github.com/RohitChanda/namaste-youtube-frontend/assets/83289069/49673c9b-ffc3-4c71-9c49-1ff26dfecad0).\
-
-ss end\
-### project description
-.....
-
